@@ -15,6 +15,7 @@ class Medecine extends Model
         'cat_medecine',
         'type_medecine',
         'indication_medecine',
+        'etat',
         'id_user',
     ];
 }

@@ -21,6 +21,7 @@ class MedecineController extends Controller
             'cat_medecine'=>$request->get('cat_medecine'),
             'type_medecine'=>$request->get('type_medecine'),
             'indication_medecine'=>$request->get('indication_medecine'),
+            'etat'=>1,
             'id_user'=>$request->get('id_user')
         ]);
         $medecine->save();
