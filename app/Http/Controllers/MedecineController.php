@@ -30,8 +30,8 @@ class MedecineController extends Controller
     {
         $medecines = Medecine::select(DB::raw('medecines.*,users.*'))
         ->join('users','medecines.id_user','=','users.id')
-        ->take(8)
-        ->orderBy('id_medecine','DESC')
+        ->take(30)
+        ->orderBy('name_medecine')
         ->get();
         return ($medecines);
     }
@@ -42,5 +42,19 @@ class MedecineController extends Controller
         ->where('id_medecine',$id)
         ->update($request->all());
         return $medecine;
+    }
+    public function changeEtatOff(Request $request,$id)
+    {
+        # code...
+        $medecine=DB::table('medecines')
+        ->where('id_medecine',$id)
+        ->update(['etat'=>0]);
+    }
+    public function changeEtatOn(Request $request,$id)
+    {
+        # code...
+        $medecine=DB::table('medecines')
+        ->where('id_medecine',$id)
+        ->update(['etat'=>1]);
     }
 }

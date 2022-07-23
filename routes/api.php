@@ -21,6 +21,9 @@ Route::delete('/logout','App\Http\Controllers\LoginController@logout');
 Route::post('addMedecine','App\Http\Controllers\MedecineController@addMedecine');
 Route::get('getMedecine','App\Http\Controllers\MedecineController@getMedecine');
 Route::put('updateMedecine/{id}','App\Http\Controllers\MedecineController@updateMedecine');
+Route::put('changeEtatOff/{id}','App\Http\Controllers\MedecineController@changeEtatOff');
+Route::put('changeEtatOn/{id}','App\Http\Controllers\MedecineController@changeEtatOn');
+
 // ---------------------ENDE MEDECINE----------------------
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('/me','App\Http\Controllers\LoginController@me');
