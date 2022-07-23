@@ -20,6 +20,7 @@ Route::delete('/logout','App\Http\Controllers\LoginController@logout');
 // -------------------START MEDECINE------------------
 Route::post('addMedecine','App\Http\Controllers\MedecineController@addMedecine');
 Route::get('getMedecine','App\Http\Controllers\MedecineController@getMedecine');
+Route::put('updateMedecine/{id}','App\Http\Controllers\MedecineController@updateMedecine');
 // ---------------------ENDE MEDECINE----------------------
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('/me','App\Http\Controllers\LoginController@me');

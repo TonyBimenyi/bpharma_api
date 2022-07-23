@@ -30,7 +30,16 @@ class MedecineController extends Controller
     {
         $medecines = Medecine::select(DB::raw('medecines.*,users.*'))
         ->join('users','medecines.id_user','=','users.id')
+        ->take(8)
+        ->orderBy('id_medecine','DESC')
         ->get();
         return ($medecines);
+    }
+    public function updateMedecine(Request $request,$id)
+    {
+        # code...
+        $medecine=Medecine::find($id);
+        $medecine->update($request->all());
+        return $medecine;
     }
 }
