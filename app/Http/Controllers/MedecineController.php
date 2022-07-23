@@ -38,8 +38,9 @@ class MedecineController extends Controller
     public function updateMedecine(Request $request,$id)
     {
         # code...
-        $medecine=Medecine::find($id);
-        $medecine->update($request->all());
+        $medecine=DB::table('medecines')
+        ->where('id_medecine',$id)
+        ->update($request->all());
         return $medecine;
     }
 }
