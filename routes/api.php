@@ -23,8 +23,11 @@ Route::get('getMedecine','App\Http\Controllers\MedecineController@getMedecine');
 Route::put('updateMedecine/{id}','App\Http\Controllers\MedecineController@updateMedecine');
 Route::put('changeEtatOff/{id}','App\Http\Controllers\MedecineController@changeEtatOff');
 Route::put('changeEtatOn/{id}','App\Http\Controllers\MedecineController@changeEtatOn');
+Route::put('addStock/{id}','App\Http\Controllers\PurchaseController@addStock');
 
-// ---------------------ENDE MEDECINE----------------------
+// ---------------------END MEDECINE----------------------
+
+
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('/me','App\Http\Controllers\LoginController@me');
 });
