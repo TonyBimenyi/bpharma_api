@@ -9,10 +9,15 @@ use DB;
 
 class PurchaseController extends Controller
 {
-    public function addStock(Request $request,$id=8)
+    public function addStock(Request $request,$id)
     {
+        $med = new Medecine([
+           $d=$request->get('qty_purchase'),
+
+        ]);
+
         $med = Medecine::where('id_medecine','=',$id)->first();
-        $med->qty_stock = $med->qty_stock+9;
+        $med->qty_stock = $med->qty_stock + $d;
         $med->update();
     }
 }
