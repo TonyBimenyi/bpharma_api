@@ -9,7 +9,9 @@ class Medecine extends Model
 {
     use HasFactory;
     protected $table = 'medecines';
+    protected $primaryKey = 'id_medecine';
     protected $fillable = [
+        'id_medecine',
         'name_medecine',
         'price_medecine',
         'cat_medecine',
