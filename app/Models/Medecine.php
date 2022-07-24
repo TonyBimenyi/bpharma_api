@@ -16,6 +16,8 @@ class Medecine extends Model
         'type_medecine',
         'indication_medecine',
         'etat',
+        'qty_stock',
+        'qty_etagere',
         'id_user',
     ];
 }

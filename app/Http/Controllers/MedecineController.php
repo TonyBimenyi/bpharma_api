@@ -22,13 +22,15 @@ class MedecineController extends Controller
             'type_medecine'=>$request->get('type_medecine'),
             'indication_medecine'=>$request->get('indication_medecine'),
             'etat'=>1,
+            'qty_stock'=>0,
+            'qty_etagere'=>0,
             'id_user'=>$request->get('id_user')
         ]);
         $medecine->save();
     }
     public function getMedecine()
     {
-        $medecines = Medecine::select(DB::raw('medecines.*,users.*'))
+        $medecines = Medecine::select(DB::raw('medecines.*,users.name'))
         ->join('users','medecines.id_user','=','users.id')
         ->take(30)
         ->orderBy('name_medecine')
