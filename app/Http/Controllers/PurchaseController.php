@@ -20,4 +20,8 @@ class PurchaseController extends Controller
         $med->qty_stock = $med->qty_stock + $d;
         $med->update();
     }
+    public function addToPurchase(Request $request)
+    {
+        # code...
+    }
 }
