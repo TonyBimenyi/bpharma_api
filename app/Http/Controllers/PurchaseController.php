@@ -20,8 +20,27 @@ class PurchaseController extends Controller
         $med->qty_stock = $med->qty_stock + $d;
         $med->update();
     }
-    public function addToPurchase(Request $request)
+    public function addToStock(Request $request)
     {
         # code...
+        $request->validate([
+            'qty_stock'=>'required',
+            'total_price'=>'required',
+            'exp_date'=>'required'
+        ]);
+        $unit_price = $request->get('total_price'/$request->get('qty_stock'));
+        $stock = new Stock([
+            'initial_qty'=>$request->get('qty_stock'),
+            'actual_qty'=>$request->get('qty_stock'),
+            'exp_date'=>$request->get('exp_date'),
+            'unit_price'=>$unit_price,
+            'total_price'=>$request->get('total_price'),
+            'unite'=>$request->get('unite'),
+            'id_medecine'=>$request->get('id_medecine'),
+            'id_user'=>$request->get('id_user')
+        ]);
+        $stock->save();
+
+
     }
 }
