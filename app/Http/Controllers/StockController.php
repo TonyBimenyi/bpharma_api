@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Medecine;
+use App\Models\Stock;
 
 use DB;
 
-class PurchaseController extends Controller
+class StockController extends Controller
 {
     public function addStock(Request $request,$id)
     {
@@ -28,7 +29,7 @@ class PurchaseController extends Controller
             'total_price'=>'required',
             'exp_date'=>'required'
         ]);
-        $unit_price = $request->get('total_price'/$request->get('qty_stock'));
+        $unit_price = $request->get('total_price')/$request->get('qty_stock');
         $stock = new Stock([
             'initial_qty'=>$request->get('qty_stock'),
             'actual_qty'=>$request->get('qty_stock'),
