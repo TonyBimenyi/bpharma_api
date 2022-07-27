@@ -24,9 +24,13 @@ Route::put('updateMedecine/{id}','App\Http\Controllers\MedecineController@update
 Route::put('changeEtatOff/{id}','App\Http\Controllers\MedecineController@changeEtatOff');
 Route::put('changeEtatOn/{id}','App\Http\Controllers\MedecineController@changeEtatOn');
 Route::put('addStock/{id}','App\Http\Controllers\PurchaseController@addStock');
-Route::post('addStock/{id}','App\Http\Controllers\StockController@addToStock');
 
 // ---------------------END MEDECINE----------------------
+
+// -------------------------START STOCK------------------------
+Route::post('addStock/{id}','App\Http\Controllers\StockController@addToStock');
+Route::get('stock','App\Http\Controllers\StockController@getStock');
+// ----------------------------END STOCK--------------------------
 
 
 Route::middleware('auth:sanctum')->group(function(){
