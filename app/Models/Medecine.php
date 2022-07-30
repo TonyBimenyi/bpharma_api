@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Stock;
 
 class Medecine extends Model
 {
@@ -22,4 +23,7 @@ class Medecine extends Model
         'qty_etagere',
         'id_user',
     ];
+     public function stock(){
+        return $this->belongsTo(related:Stock::class,foreignKey:'id_medecine');
+    }
 }

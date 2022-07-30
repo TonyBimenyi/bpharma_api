@@ -47,12 +47,19 @@ class StockController extends Controller
     public function getStock()
     {
         # code...
-        $stock = Stock::select(DB::raw('stocks.*,users.*,medecines.*'))
-        ->join('users','stocks.id_user','=','users.id')
-        ->join('medecines','stocks.id_medecine','=','medecines.id_medecine')
-        ->take(30)
-        ->orderBy('name_medecine')
-        ->get();
+        // $stock = Stock::select(DB::raw('stocks.*,users.*,medecines.*'))
+        // ->join('users','stocks.id_user','=','users.id')
+        // ->join('medecines','stocks.id_medecine','=','medecines.id_medecine')
+        // ->take(30)
+        // ->orderBy('name_medecine')
+        // ->get();
+        // return $stock;
+        // $medecine = Medecine::with('stock')->get();
+        $stock = Stock::with('medecine','user')->get();
+        $user = Stock::with('user')->get();
+        // return $medecine;
         return $stock;
+        // return $user
+        // return $medecine;
     }
 }

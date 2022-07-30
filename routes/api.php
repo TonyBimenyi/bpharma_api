@@ -32,7 +32,9 @@ Route::post('addStock/{id}','App\Http\Controllers\StockController@addToStock');
 Route::get('stock','App\Http\Controllers\StockController@getStock');
 // ----------------------------END STOCK--------------------------
 
-
+// ----------------------START REQUISITIONS---------------------
+Route::post('addRequisition/{id}','App\Http\Controllers\RequisitionController@addRequisition');
+// ------------------------END REQUISITIONS-------------------------
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('/me','App\Http\Controllers\LoginController@me');
 });
