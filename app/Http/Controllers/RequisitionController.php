@@ -19,6 +19,7 @@ class RequisitionController extends Controller
             'actual_qty_requi'=>$request->get('initial_qty_requi'),
             'purchase_price'=>$request->get('purchase_price'),
             'sale_price_requi'=>$request->get('sale_price'),
+            'id_medecine'=>$request->get('id_medecine'),
             'id_stock'=>$request->get('id_stock'),
             'id_user'=>$request->get('id_user'),
             'validate_by'=>0
@@ -30,5 +31,12 @@ class RequisitionController extends Controller
         $stock->actual_qty = $stock->actual_qty - $stock_qty;
         $stock->update();
         $requisition->save();
+    }
+    public function getRequisition()
+    {
+        // code...
+        $requisition = Requisition::with('stock','medecine','user')
+        ->get();
+        return $requisition;
     }
 }

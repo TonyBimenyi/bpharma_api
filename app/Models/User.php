@@ -17,7 +17,11 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    use HasFactory;
+    protected $table = 'users';
+    protected $primaryKey = 'id';
     protected $fillable = [
+        'id',
         'name',
         'email',
         'password',
@@ -41,4 +45,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function stock(){
+        return $this->belongsTo(related:Stock::class,foreignKey:'id_user');
+    }
 }

@@ -56,10 +56,6 @@ class StockController extends Controller
         // return $stock;
         // $medecine = Medecine::with('stock')->get();
         $stock = Stock::with('medecine','user')->get();
-        $user = Stock::with('user')->get();
-        // return $medecine;
         return $stock;
-        // return $user
-        // return $medecine;
     }
 }

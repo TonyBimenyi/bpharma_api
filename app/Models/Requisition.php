@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Stock;
+use App\Models\Medecine;
 
 class Requisition extends Model
 {
@@ -16,6 +18,7 @@ class Requisition extends Model
         'actual_qty_requi',
         'purchase_price',
         'sale_price_requi',
+        'id_medecine'
         'id_stock',
         'id_user',
         'validate_by',
@@ -23,8 +26,16 @@ class Requisition extends Model
         'updated_at'
     ];
 
-    public function getUser(){
-        return $this->belongsTo('App\Models\User', 'id');
+    public function stock(){
+        return $this->hasMany(Stock::class,'id_stock','id_stock');
+    }
+    public function medecine()
+    {
+        return $this->hasMany(Medecine::class,'id_medecine','id_medecine');
+    }   
+    public function user()
+    {
+        return $this->hasMany(User::class,'id','id_user');
     }
 
 }

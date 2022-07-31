@@ -34,6 +34,7 @@ Route::get('stock','App\Http\Controllers\StockController@getStock');
 
 // ----------------------START REQUISITIONS---------------------
 Route::post('addRequisition/{id}','App\Http\Controllers\RequisitionController@addRequisition');
+Route::get('requisition','App\Http\Controllers\RequisitionController@getRequisition');
 // ------------------------END REQUISITIONS-------------------------
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('/me','App\Http\Controllers\LoginController@me');
