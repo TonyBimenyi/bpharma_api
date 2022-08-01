@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Requisition;
 use App\Models\Stock;
+use App\Models\Medecine;
 
 class RequisitionController extends Controller
 {
@@ -38,5 +39,22 @@ class RequisitionController extends Controller
         $requisition = Requisition::with('stock','medecine','user')
         ->get();
         return $requisition;
+    }
+    public function validateRequi(Request $request,$id)
+    {
+        // code...
+        $requisition = new Requisition([
+           $validate_by=$request->get('validate_user'),
+        ]);
+        $requisition= Requisition::where('id_requi','=',$id)->first();
+        $requisition->validate_by = $validate_by;
+        $med = new Medecine([
+           $validate_qty=$request->get('validate_qty'),
+           $id_medecine=$request->get('id_medecine'),
+        ]);
+        $med = Medecine::where('id_medecine','=',$id_medecine)->first();
+        $med->qty_stock = $med->qty_stock + $validate_qty;
+        $med->update();
+        $requisition->update();
     }
 }

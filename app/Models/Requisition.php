@@ -18,7 +18,7 @@ class Requisition extends Model
         'actual_qty_requi',
         'purchase_price',
         'sale_price_requi',
-        'id_medecine'
+        'id_medecine',
         'id_stock',
         'id_user',
         'validate_by',
