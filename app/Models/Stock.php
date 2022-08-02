@@ -32,11 +32,11 @@ class Stock extends Model
     }
     public function medecine()
     {
-        return $this->hasMany(related:Medecine::class, foreignKey:'id_medecine');
+        return $this->hasMany(Medecine::class,'id_medecine','id_medecine');
     }
     public function user()
     {
-        return $this->hasMany(related:User::class, foreignKey:'id');
+        return $this->hasMany(User::class,'id','id_user');
     }
     public function requisition(){
         return $this->belongsTo(related:Requisition::class,foreignKey:'id_requi');
