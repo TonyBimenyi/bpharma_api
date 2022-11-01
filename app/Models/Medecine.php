@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Requisition;
+use App\Models\Stock;
+use App\Models\Order;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Stock;
 
 class Medecine extends Model
 {
@@ -25,5 +27,12 @@ class Medecine extends Model
     ];
      public function stock(){
         return $this->belongsTo(related:Stock::class,foreignKey:'id_medecine');
+    }
+     public function orders(){
+        return $this->belongsTo(related:Order::class,foreignKey:'id_medecine');
+    }
+
+    public function requisitions(){
+        return $this->hasMany(Requisition::class, foreignKey:'id_medecine');
     }
 }

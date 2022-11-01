@@ -48,4 +48,7 @@ class User extends Authenticatable
     public function stock(){
         return $this->belongsTo(related:Stock::class,foreignKey:'id_user');
     }
+     public function order(){
+        return $this->belongsTo(related:Order::class,foreignKey:'id_user');
+    }
 }

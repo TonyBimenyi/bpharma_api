@@ -37,6 +37,17 @@ Route::post('addRequisition/{id}','App\Http\Controllers\RequisitionController@ad
 Route::get('requisition','App\Http\Controllers\RequisitionController@getRequisition');
 Route::put('validateRequi/{id}','App\Http\Controllers\RequisitionController@validateRequi');
 // ------------------------END REQUISITIONS-------------------------
+
+
+
+//---------------------------START ORDERS-----------------------
+Route::post('addOrder','App\Http\Controllers\OrderController@addOrder');
+Route::get('orders','App\Http\Controllers\OrderController@listOrders');
+//------------------------------END ORDERS------------------
+Route::get('vente','App\Http\Controllers\VenteController@venteCart');
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('/me','App\Http\Controllers\LoginController@me');
 });
+
+Route::get('products_detail/{id?}','App\Http\Controllers\MedecineController@detailProduit');
+Route::post('saveData','App\Http\Controllers\MedecineController@saveData');

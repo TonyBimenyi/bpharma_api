@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Medecine;
+use App\Models\Requisition;
 use DB;
+use Illuminate\Http\Request;
 
 class MedecineController extends Controller
 {
@@ -36,6 +37,26 @@ class MedecineController extends Controller
         ->orderBy('name_medecine')
         ->get();
         return ($medecines);
+    }
+
+    public function saveData(Request $request)
+    {
+        $data = $request->all();
+        
+        foreach ($data as $value) {
+            Commade::create($value);            
+        }
+
+        return null;
+    }
+
+    public function detailProduit($id){
+       $medecines =  Medecine::with('requisitions')
+                    ->where('id_medecine', $id)
+                    ->get();
+
+        return  $medecines;
+
     }
     public function updateMedecine(Request $request,$id)
     {
