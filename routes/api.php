@@ -47,6 +47,10 @@ Route::get('vente','App\Http\Controllers\VenteController@venteCart');
 Route::get('order_details','App\Http\Controllers\OrderController@orderDetails');
 //------------------------------END ORDERS------------------
 
+//------------------------------START STATS---------------------------
+Route::get('stats','App\Http\Controllers\OrderController@stats');
+//------------------------------END STATS-------------------------------
+
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('/me','App\Http\Controllers\LoginController@me');
 });

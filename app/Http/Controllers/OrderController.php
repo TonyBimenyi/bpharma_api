@@ -55,5 +55,16 @@ class OrderController extends Controller
     	
     	return $orders;
     }
+    public function stats()
+    {
+        // code...
+       
+        $orders = DB::table('order_items')
+        ->select('id_medecine',DB::raw('count(*) as "nbre des fois",sum(pv) as "prix_vente",sum(pa) as "prix_achat",sum(qty) as "qty",`name_medecine`'))
+        ->groupBy('id_medecine','name_medecine')
+        ->get();
+        return $orders;
+    }
+    
 
 }
