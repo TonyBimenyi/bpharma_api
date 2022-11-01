@@ -43,8 +43,10 @@ Route::put('validateRequi/{id}','App\Http\Controllers\RequisitionController@vali
 //---------------------------START ORDERS-----------------------
 Route::post('addOrder','App\Http\Controllers\OrderController@addOrder');
 Route::get('orders','App\Http\Controllers\OrderController@listOrders');
-//------------------------------END ORDERS------------------
 Route::get('vente','App\Http\Controllers\VenteController@venteCart');
+Route::get('order_details','App\Http\Controllers\OrderController@orderDetails');
+//------------------------------END ORDERS------------------
+
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('/me','App\Http\Controllers\LoginController@me');
 });

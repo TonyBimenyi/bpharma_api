@@ -34,6 +34,7 @@ class OrderController extends Controller
     		OrderItem::create([
     			'order_id' => $id,
     			'id_medecine' => $item['id_medecine'],
+                'name_medecine' => $item['name_medecine'],
     			'qty' => $item['quantite'],
     			'id_requi' => $item['id_requi'],
     			'pa' => $item['purchase_price'],
@@ -50,8 +51,9 @@ class OrderController extends Controller
     }
     public function listOrders()
     {
-    	$orders = Order::with('user')->get();
+    	$orders = Order::with('user','order_details')->get();
     	
     	return $orders;
     }
+
 }
