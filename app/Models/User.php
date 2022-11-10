@@ -51,4 +51,7 @@ class User extends Authenticatable
      public function order(){
         return $this->belongsTo(related:Order::class,foreignKey:'id_user');
     }
+      public function perte(){
+        return $this->belongsTo(related:Perte::class,foreignKey:'id_user');
+    }
 }

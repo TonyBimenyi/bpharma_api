@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Requisition;
 use App\Models\Stock;
 use App\Models\Order;
+use App\Models\Perte;
 use App\Models\OrderItem;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -28,6 +29,9 @@ class Medecine extends Model
     ];
      public function stock(){
         return $this->belongsTo(related:Stock::class,foreignKey:'id_medecine');
+    }
+     public function perte(){
+        return $this->belongsTo(related:Perte::class,foreignKey:'id_medecine');
     }
      public function order_items(){
         return $this->belongsTo(related:OrderItem::class,foreignKey:'id_medecine');

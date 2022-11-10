@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Stock;
 use App\Models\Medecine;
-
+use App\Models\Perte;
 class Requisition extends Model
 {
     use HasFactory;
@@ -25,6 +25,9 @@ class Requisition extends Model
         'created_at',
         'updated_at'
     ];
+     public function perte(){
+        return $this->belongsTo(related:Perte::class,foreignKey:'id_requi');
+    }
 
     public function stock(){
         return $this->hasMany(Stock::class,'id_stock','id_stock');

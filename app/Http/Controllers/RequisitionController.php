@@ -38,6 +38,15 @@ class RequisitionController extends Controller
         // code...
         $requisition = Requisition::with('stock','medecine','user')
         ->join('medecines','requisitions.id_medecine','=','medecines.id_medecine')
+        ->orderBy('name_medecine')
+        ->get();
+        return $requisition;
+    }
+    public function requisitionVentes()
+    {
+        // code...
+         $requisition = Requisition::with('stock','medecine','user')
+        ->join('medecines','requisitions.id_medecine','=','medecines.id_medecine')
         ->where('actual_qty_requi', '>', 0)
         ->orderBy('name_medecine')
         ->get();

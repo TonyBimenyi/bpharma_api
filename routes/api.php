@@ -35,10 +35,14 @@ Route::get('stock','App\Http\Controllers\StockController@getStock');
 // ----------------------START REQUISITIONS---------------------
 Route::post('addRequisition/{id}','App\Http\Controllers\RequisitionController@addRequisition');
 Route::get('requisition','App\Http\Controllers\RequisitionController@getRequisition');
+Route::get('requisitionVentes','App\Http\Controllers\RequisitionController@requisitionVentes');
 Route::put('validateRequi/{id}','App\Http\Controllers\RequisitionController@validateRequi');
 // ------------------------END REQUISITIONS-------------------------
 
-
+//----------------------START PERTE------------------------------
+Route::post('addPerte/{id}','App\Http\Controllers\PerteController@addPerte');
+Route::get('pertes','App\Http\Controllers\PerteController@getPerte');
+//-----------------------END PERTE------------------------------
 
 //---------------------------START ORDERS-----------------------
 Route::post('addOrder','App\Http\Controllers\OrderController@addOrder');
