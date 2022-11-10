@@ -45,6 +45,7 @@ Route::post('addOrder','App\Http\Controllers\OrderController@addOrder');
 Route::get('orders','App\Http\Controllers\OrderController@listOrders');
 Route::get('vente','App\Http\Controllers\VenteController@venteCart');
 Route::get('order_details','App\Http\Controllers\OrderController@orderDetails');
+Route::get('order_detail/{id}','App\Http\Controllers\OrderController@detailsById');
 //------------------------------END ORDERS------------------
 
 //------------------------------START STATS---------------------------
