@@ -72,6 +72,15 @@ class OrderController extends Controller
         ->get();
         return $orders;
     }
+    public function lastId()
+    {
+        // code...
+        $orders = Order::
+        orderBy('id_order','desc')
+        ->take(1)
+        ->get();
+        return $orders;
+    }
     
 
 }
