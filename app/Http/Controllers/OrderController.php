@@ -58,8 +58,8 @@ class OrderController extends Controller
     public function detailsById($id)
     {
         // code...
-        $orders= Order::with('user','order_details')
-        ->where('id_order','=',$id)->first();
+        $orders= OrderItem::
+        where('order_id','=',$id)->get();
         return $orders;
     }
     public function stats()

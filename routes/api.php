@@ -37,6 +37,8 @@ Route::post('addRequisition/{id}','App\Http\Controllers\RequisitionController@ad
 Route::get('requisition','App\Http\Controllers\RequisitionController@getRequisition');
 Route::get('requisitionVentes','App\Http\Controllers\RequisitionController@requisitionVentes');
 Route::put('validateRequi/{id}','App\Http\Controllers\RequisitionController@validateRequi');
+Route::put('deleteRequi/{id}','App\Http\Controllers\RequisitionController@deleteRequi');
+Route::get('expiredRequi','App\Http\Controllers\RequisitionController@expiredRequi');
 // ------------------------END REQUISITIONS-------------------------
 
 //----------------------START PERTE------------------------------

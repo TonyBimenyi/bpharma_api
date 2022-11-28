@@ -36,8 +36,36 @@ class RequisitionController extends Controller
     public function getRequisition()
     {
         // code...
+
+        $start_date = \Request::get('start_date');
+        $end_date = \Request::get('end_date');
+
+
+        $requisition = Requisition::with('stock','medecine','user')
+        
+        ->where(function($query) use($start_date,$end_date){
+            if($start_date){
+                $query->whereDate('created_at', '>=',$start_date);
+            }
+
+            if($end_date){
+                $query->whereDate('created_at', '<=',$end_date);
+            }
+
+        })
+        ->orderBy('id_requi','DESC')
+        ->get();
+        return $requisition;
+    }
+     public function expiredRequi()
+    {
+        // code...
+        
+        $dateTime = date('Y-m-d H:i:s');
         $requisition = Requisition::with('stock','medecine','user')
         ->join('medecines','requisitions.id_medecine','=','medecines.id_medecine')
+        ->join('stocks','requisitions.id_stock','=','stocks.id_stock')
+        ->where('stocks.exp_date','<',$dateTime)
         ->orderBy('name_medecine')
         ->get();
         return $requisition;
@@ -45,9 +73,12 @@ class RequisitionController extends Controller
     public function requisitionVentes()
     {
         // code...
+
+
          $requisition = Requisition::with('stock','medecine','user')
         ->join('medecines','requisitions.id_medecine','=','medecines.id_medecine')
         ->where('actual_qty_requi', '>', 0)
+        ->where('requisitions.validate_by','!=','0')
         ->orderBy('name_medecine')
         ->get();
         return $requisition;
@@ -68,5 +99,20 @@ class RequisitionController extends Controller
         $med->qty_stock = $med->qty_stock + $validate_qty;
         $med->update();
         $requisition->update();
+    }
+    public function deleteRequi(Request $request,$id)
+    {
+        // code...
+         $requisition = Requisition::findOrFail($id);
+        $requisition->delete();
+
+        $med = new Stock([
+           $id_stock=$request->get('id_stock'),
+           $qty=$request->get('qty'),
+        ]);
+        $med = Stock::where('id_stock','=',$id_stock)->first();
+        $med->actual_qty = $med->actual_qty + $qty;
+        $med->update();
+
     }
 }
