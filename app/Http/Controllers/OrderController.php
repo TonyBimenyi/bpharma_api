@@ -79,10 +79,22 @@ class OrderController extends Controller
     public function stats()
     {
         // code...
+         $start_date = \Request::get('start_date');
+        $end_date = \Request::get('end_date');
         
         $orders = DB::table('order_items')
         ->select('id_medecine',DB::raw('count(*) as "nbre_des_fois",sum(pv) as "prix_vente",sum(pa) as "prix_achat",sum(qty) as "qty",`name_medecine`'))
         ->groupBy('id_medecine','name_medecine')
+        ->where(function($query) use($start_date,$end_date){
+            if($start_date){
+                $query->whereDate('created_at', '>=',$start_date);
+            }
+
+            if($end_date){
+                $query->whereDate('created_at', '<=',$end_date);
+            }
+
+        })
         ->get();
         return $orders;
     }

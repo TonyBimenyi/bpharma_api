@@ -60,8 +60,21 @@ class StockController extends Controller
         // ->get();
         // return $stock;
         // $medecine = Medecine::with('stock')->get();
+        $start_date = \Request::get('start_date');
+        $end_date = \Request::get('end_date');
+
         $stock = Stock::with('medecine','user')
         ->orderBy('id_stock','DESC')
+        ->where(function($query) use($start_date,$end_date){
+            if($start_date){
+                $query->whereDate('created_at', '>=',$start_date);
+            }
+
+            if($end_date){
+                $query->whereDate('created_at', '<=',$end_date);
+            }
+
+        })
         ->get();
         return $stock;
     }
