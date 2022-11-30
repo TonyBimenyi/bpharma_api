@@ -21,7 +21,7 @@ class StockController extends Controller
         $med->qty_stock = $med->qty_stock + $d;
         $med->update();
     }
-    public function addToStock(Request $request)
+    public function addToStock(Request $request,$id)
     {
         # code...
         $request->validate([
@@ -40,7 +40,12 @@ class StockController extends Controller
             'id_medecine'=>$request->get('id_medecine'),
             'id_user'=>$request->get('id_user')
         ]);
+        $d=$request->get('qty_stock');
+        $med = Medecine::where('id_medecine','=',$id)->first();
+        $med->qty_stock = $med->qty_stock + $d;
+        $med->update();
         $stock->save();
+       
 
 
     }
@@ -55,7 +60,9 @@ class StockController extends Controller
         // ->get();
         // return $stock;
         // $medecine = Medecine::with('stock')->get();
-        $stock = Stock::with('medecine','user')->get();
+        $stock = Stock::with('medecine','user')
+        ->orderBy('id_stock','DESC')
+        ->get();
         return $stock;
     }
 }

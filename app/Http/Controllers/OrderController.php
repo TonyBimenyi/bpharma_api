@@ -51,7 +51,21 @@ class OrderController extends Controller
     }
     public function listOrders()
     {
-    	$orders = Order::with('user','order_details')->get();
+        $start_date = \Request::get('start_date');
+        $end_date = \Request::get('end_date');
+
+    	$orders = Order::with('user','order_details')
+        ->where(function($query) use($start_date,$end_date){
+            if($start_date){
+                $query->whereDate('created_at', '>=',$start_date);
+            }
+
+            if($end_date){
+                $query->whereDate('created_at', '<=',$end_date);
+            }
+
+        })
+        ->get();
     	
     	return $orders;
     }

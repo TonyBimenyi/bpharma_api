@@ -96,7 +96,7 @@ class RequisitionController extends Controller
            $id_medecine=$request->get('id_medecine'),
         ]);
         $med = Medecine::where('id_medecine','=',$id_medecine)->first();
-        $med->qty_stock = $med->qty_stock + $validate_qty;
+        $med->qty_etagere = $med->qty_etagere + $validate_qty;
         $med->update();
         $requisition->update();
     }
