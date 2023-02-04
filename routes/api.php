@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::post('/register','App\Http\Controllers\RegisterController@register');
 Route::post('/login','App\Http\Controllers\LoginController@login');
+Route::get('/utilisateurs','App\Http\Controllers\LoginController@show');
 Route::delete('/logout','App\Http\Controllers\LoginController@logout');
 // -------------------START MEDECINE------------------
 Route::post('addMedecine','App\Http\Controllers\MedecineController@addMedecine');
@@ -30,6 +31,7 @@ Route::put('addStock/{id}','App\Http\Controllers\PurchaseController@addStock');
 // -------------------------START STOCK------------------------
 Route::post('addStock/{id}','App\Http\Controllers\StockController@addToStock');
 Route::get('stock','App\Http\Controllers\StockController@getStock');
+Route::put('deleteStock/{id}','App\Http\Controllers\StockController@deleteStock');
 // ----------------------------END STOCK--------------------------
 
 // ----------------------START REQUISITIONS---------------------

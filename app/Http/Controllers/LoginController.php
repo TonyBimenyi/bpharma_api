@@ -7,12 +7,13 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
+
 class LoginController extends Controller
 {
    public function login(Request $request)
    {
         $request->validate([
-            'email'=>['required','email'],
+            'email'=>['required'],
             'password'=>['required']
         ]);
         $user = User::where('email', $request['email'])->firstOrFail();
@@ -33,6 +34,12 @@ class LoginController extends Controller
    public function me(Request $request)
    {
        return $request->user();
+   }
+   public function show()
+   {
+     # code...
+    $users = User::get();
+    return $users;
    }
 
 }

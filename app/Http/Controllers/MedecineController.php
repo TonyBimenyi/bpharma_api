@@ -33,9 +33,8 @@ class MedecineController extends Controller
     {
         $medecines = Medecine::select(DB::raw('medecines.*,users.name'))
         ->join('users','medecines.id_user','=','users.id')
-        ->take(30)
         ->orderBy('name_medecine')
-        ->get();
+        ->get(100);
         return ($medecines);
     }
 

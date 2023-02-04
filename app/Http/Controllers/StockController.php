@@ -78,4 +78,19 @@ class StockController extends Controller
         ->get();
         return $stock;
     }
+    public function deleteStock(Request $request,$id)
+    {
+        # code...
+         $med = new Medecine([
+           $id_medecine=$request->get('id_medecine'),
+           $qty=$request->get('qty'),
+        ]);
+        $med = Medecine::where('id_medecine','=',$id_medecine)
+        ->first();
+        $med->qty_stock = $med->qty_stock - $qty;
+        $med->update();
+        $stock = Stock::findOrFail($id);
+        $stock->delete();
+
+    }
 }
