@@ -20,6 +20,7 @@ class Order extends Model
         'montant_total',
         'montant_paye',
         'id_user',
+        'date_commande',
         'created_at',
         'updated_at',
     ];

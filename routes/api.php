@@ -50,6 +50,7 @@ Route::get('pertes','App\Http\Controllers\PerteController@getPerte');
 
 //---------------------------START ORDERS-----------------------
 Route::post('addOrder','App\Http\Controllers\OrderController@addOrder');
+Route::post('deleteOrder/{id}','App\Http\Controllers\OrderController@deleteOrder');
 Route::get('orders','App\Http\Controllers\OrderController@listOrders');
 Route::get('lastId','App\Http\Controllers\OrderController@lastId');
 Route::get('vente','App\Http\Controllers\VenteController@venteCart');
