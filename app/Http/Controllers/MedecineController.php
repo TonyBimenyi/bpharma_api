@@ -29,13 +29,33 @@ class MedecineController extends Controller
         ]);
         $medecine->save();
     }
+    public function getMedStock()
+    {
+        # code...
+        $medecines = DB::table('medecines')
+       ->join('stocks','medecines.id_medecine','=','stocks.id_medecine')
+       ->join('users','medecines.id_user','users.id')
+       ->select('medecines.*',DB::raw('SUM(stocks.actual_qty) AS stock_sum'),'users.email')
+        ->groupBy('medecines.id_medecine','medecines.name_medecine','medecines.price_medecine','medecines.cat_medecine','medecines.type_medecine','medecines.indication_medecine','medecines.etat','medecines.qty_stock','medecines.qty_etagere','medecines.id_user','medecines.created_at','medecines.updated_at')
+       ->orderBy('medecines.name_medecine')
+
+        ->get();
+        return $medecines;
+    }
     public function getMedecine()
     {
-        $medecines = Medecine::select(DB::raw('medecines.*,users.name'))
-        ->join('users','medecines.id_user','=','users.id')
-        ->orderBy('name_medecine')
-        ->get(100);
-        return ($medecines);
+        $medecines = DB::table('medecines')
+       ->join('stocks','medecines.id_medecine','=','stocks.id_medecine')
+	   ->join('requisitions','stocks.id_stock','=','requisitions.id_stock')	
+       ->join('users','medecines.id_user','users.id')
+	   ->select('medecines.*',DB::raw('SUM(requisitions.actual_qty_requi) AS requi_sum'),'users.email')
+       ->Where('requisitions.validate_by','!=', '0')
+        ->groupBy('medecines.id_medecine','medecines.name_medecine','medecines.price_medecine','medecines.cat_medecine','medecines.type_medecine','medecines.indication_medecine','medecines.etat','medecines.qty_stock','medecines.qty_etagere','medecines.id_user','medecines.created_at','medecines.updated_at')
+	   ->orderBy('medecines.name_medecine')
+
+        ->get();
+        return $medecines;
+
     }
 
     public function saveData(Request $request)

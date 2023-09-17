@@ -85,8 +85,8 @@ class OrderController extends Controller
         $end_date = \Request::get('end_date');
         
         $orders = DB::table('order_items')
-        ->select('id_medecine',DB::raw('count(*) as "nbre_des_fois",sum(pv) as "prix_vente",sum(pa) as "prix_achat",sum(qty) as "qty",`name_medecine`'))
-        ->groupBy('id_medecine','name_medecine')
+        ->select('id_medecine',DB::raw('count(*) as "nbre_des_fois",sum(pv) as "prix_vente",sum(pa) as "prix_achat",sum(qty) as "qty",`name_medecine`,`pv`,`pa`'))
+        ->groupBy('id_medecine','name_medecine','pv','pa')
         ->where(function($query) use($start_date,$end_date){
             if($start_date){
                 $query->whereDate('created_at', '>=',$start_date);

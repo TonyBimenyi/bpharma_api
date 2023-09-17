@@ -41,9 +41,9 @@ class StockController extends Controller
             'id_user'=>$request->get('id_user')
         ]);
         $d=$request->get('qty_stock');
-        $med = Medecine::where('id_medecine','=',$id)->first();
-        $med->qty_stock = $med->qty_stock + $d;
-        $med->update();
+        // $med = Medecine::where('id_medecine','=',$id)->first();
+        // $med->qty_stock = $med->qty_stock + $d;
+        // $med->update();
         $stock->save();
        
 

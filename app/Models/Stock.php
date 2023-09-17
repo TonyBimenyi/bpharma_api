@@ -38,7 +38,7 @@ class Stock extends Model
     {
         return $this->hasMany(User::class,'id','id_user');
     }
-    public function requisition(){
+    public function requisitions(){
         return $this->belongsTo(related:Requisition::class,foreignKey:'id_requi');
     }
 

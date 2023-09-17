@@ -22,4 +22,13 @@ class RegisterController extends Controller
             'password'=>hash::make($request->password),
         ]);
     }
+    public function update(Request $request, $id)
+    {
+   ;
+     
+        $input = $request->all();
+         $user = User::findOrFail($id);
+         $input['password'] = bcrypt($input['password']);
+         $user->fill($input)->update();    
+    }
 }

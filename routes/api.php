@@ -15,12 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::post('/register','App\Http\Controllers\RegisterController@register');
+Route::put('/updateUser/{id}','App\Http\Controllers\RegisterController@update');
 Route::post('/login','App\Http\Controllers\LoginController@login');
 Route::get('/utilisateurs','App\Http\Controllers\LoginController@show');
 Route::delete('/logout','App\Http\Controllers\LoginController@logout');
 // -------------------START MEDECINE------------------
 Route::post('addMedecine','App\Http\Controllers\MedecineController@addMedecine');
 Route::get('getMedecine','App\Http\Controllers\MedecineController@getMedecine');
+Route::get('getMedStock','App\Http\Controllers\MedecineController@getMedStock');
 Route::put('updateMedecine/{id}','App\Http\Controllers\MedecineController@updateMedecine');
 Route::put('changeEtatOff/{id}','App\Http\Controllers\MedecineController@changeEtatOff');
 Route::put('changeEtatOn/{id}','App\Http\Controllers\MedecineController@changeEtatOn');
@@ -29,13 +31,15 @@ Route::put('addStock/{id}','App\Http\Controllers\PurchaseController@addStock');
 // ---------------------END MEDECINE----------------------
 
 // -------------------------START STOCK------------------------
-Route::post('addStock/{id}','App\Http\Controllers\StockController@addToStock');
+Route::post('addStock2/{id}','App\Http\Controllers\StockController@addToStock');
 Route::get('stock','App\Http\Controllers\StockController@getStock');
 Route::put('deleteStock/{id}','App\Http\Controllers\StockController@deleteStock');
 // ----------------------------END STOCK--------------------------
 
 // ----------------------START REQUISITIONS---------------------
 Route::post('addRequisition/{id}','App\Http\Controllers\RequisitionController@addRequisition');
+Route::post('addStock/{id}','App\Http\Controllers\RequisitionController@addStock');
+Route::post('reduceStock/{id}','App\Http\Controllers\RequisitionController@reduceStock');
 Route::get('requisition','App\Http\Controllers\RequisitionController@getRequisition');
 Route::get('requisitionVentes','App\Http\Controllers\RequisitionController@requisitionVentes');
 Route::put('validateRequi/{id}','App\Http\Controllers\RequisitionController@validateRequi');
@@ -45,6 +49,8 @@ Route::get('expiredRequi','App\Http\Controllers\RequisitionController@expiredReq
 
 //----------------------START PERTE------------------------------
 Route::post('addPerte/{id}','App\Http\Controllers\PerteController@addPerte');
+Route::post('modifyRequiAdd/{id}','App\Http\Controllers\PerteController@modifyRequiAdd');
+Route::post('modifyRequiReduce/{id}','App\Http\Controllers\PerteController@modifyRequiReduce');
 Route::get('pertes','App\Http\Controllers\PerteController@getPerte');
 //-----------------------END PERTE------------------------------
 

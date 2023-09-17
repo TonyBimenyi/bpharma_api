@@ -22,7 +22,7 @@ class RequisitionController extends Controller
             'sale_price_requi'=>$request->get('sale_price'),
             'id_medecine'=>$request->get('id_medecine'),
             'id_stock'=>$request->get('id_stock'),
-            'id_user'=>$request->get('id_user'),
+            'id_user'=>$request->get('id_user'),                
             'validate_by'=>0
         ]);
         $stock = new Stock([
@@ -39,6 +39,26 @@ class RequisitionController extends Controller
         $med = Medecine::where('id_medecine','=',$id_medecine)->first();
         $med->qty_stock = $med->qty_stock - $validate_qty;
         $med->update();
+    }
+    public function addStock(Request $request,$id)
+    {
+        # code...
+         $stock = new Stock([
+            $stock_qty=$request->get('initial_qty_requi'),
+         ]);
+        $stock= Stock::where('id_stock','=',$id)->first();
+        $stock->actual_qty = $stock->actual_qty + $stock_qty;
+        $stock->update();
+    }
+    public function reduceStock(Request $request,$id)
+    {
+        # code...
+         $stock = new Stock([
+            $stock_qty=$request->get('initial_qty_requi'),
+         ]);
+        $stock= Stock::where('id_stock','=',$id)->first();
+        $stock->actual_qty = $stock->actual_qty - $stock_qty;
+        $stock->update();
     }
     public function getRequisition()
     {
@@ -128,6 +148,7 @@ class RequisitionController extends Controller
         $med = Medecine::where('id_medecine','=',$id_medecine)
         ->first();
         $med->qty_stock = $med->qty_stock + $qty;
+        $med->qty_etagere = $med->qty_etagere - $qty;
         $med->update();
 
     }
